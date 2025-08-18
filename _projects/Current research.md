@@ -1,6 +1,8 @@
 ---
 name: Precision Biosystems Laboratory, Georgia Institute of Technology
-tools: []
+pi: Dr. Craig Forest
+role: PhD Candidate
+year: 2021-Present
 technical_skills: ["Altium Software for Printed Circuit Board (PCB) Design", "Model Fitting (Matlab & Python)", "CNC Milling", "CAD Modeling (Solidworks)", "Tissue Immunostaining", "SEM Imaging"]
 research_skills: ["Device design and characterization", "Proposal writing", "Understanding of the epithelial electrophysiology field", "Challenges in ion transport research"]
 image: /assets/img/EIS.png
