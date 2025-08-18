@@ -1,55 +1,57 @@
-{% comment %}
-Renders cards from the _projects/ collection (local projects).
-Sorts by "weight" if present; falls back to name.
-{% endcomment %}
+<div class="card-columns m-3 mt-5">
 
-{% assign items = site.projects | sort: "weight" %}
-<div class="row">
-  {% for project in items %}
-  <div class="col-md-6 col-lg-4 mb-4">
-    <div class="card h-100">
-      {% if project.image %}
-      <img class="card-img-top" src="{{ project.image | relative_url }}" alt="{{ project.name }}">
-      {% endif %}
+  <!-- Remote Projects (unchanged) -->
+  {% for remote_project in page.remote_projects %}
+    {%- for repo in site.github.public_repositories -%}
+      {%- if remote_project == repo.name -%}
+        {%- assign project = repo -%}
+        {%- assign words = project.name | split: '-' -%}
+        {%- capture titlecase -%}
+          {%- for word in words -%}
+            {{ word | capitalize | append: ' ' }}
+          {%- endfor -%}
+        {%- endcapture -%}
 
-      <div class="card-body d-flex flex-column">
-        <h5 class="card-title">{{ project.name }}</h5>
+        {%- assign project_type  = "remote" -%}
+        {%- assign project_id    = project.name -%}
+        {%- assign project_img   = false -%}
+        {%- assign project_name  = titlecase | strip -%}
+        {%- assign project_desc  = project.description -%}
+        {%- assign project_url   = project.html_url -%}
+        {%- assign project_tools = project.topics -%}
+        {%- assign external      = true -%}
 
-        {% if project.description %}
-        <p class="card-text">{{ project.description }}</p>
-        {% endif %}
-
-        {% if project.pi or project.role or project.year %}
-          <p class="proj-meta-inline">
-            {% if project.role %}{{ project.role }}{% endif %}
-            {% if project.pi %}{% if project.role %} · {% endif %}{{ project.pi }}{% endif %}
-            {% if project.year %} · {{ project.year }}{% endif %}
-          </p>
-        {% endif %}
-
-        {% if project.research_skills %}
-        <div class="chip-row">
-          {% for s in project.research_skills limit:2 %}
-            <span class="chip chip-research">{{ s }}</span>
-          {% endfor %}
-        </div>
-        {% endif %}
-
-        {% if project.technical_skills %}
-        <div class="chip-row">
-          {% for s in project.technical_skills limit:2 %}
-            <span class="chip chip-tech">{{ s }}</span>
-          {% endfor %}
-        </div>
-        {% endif %}
-      </div>
-
-      {% if project.external_url %}
-      <div class="card-footer text-center mt-auto">
-        <a href="{{ project.external_url }}" class="btn btn-primary" target="_blank" rel="noopener">View Project</a>
-      </div>
-      {% endif %}
-    </div>
-  </div>
+        {% include projects/project-card.html %}
+      {%- endif -%}
+    {%- endfor -%}
   {% endfor %}
+
+  <!-- Local Projects: now sorted by weight and with extra fields -->
+  {% assign local_projects = site.projects | sort: "weight" %}
+  {% for project in local_projects %}
+
+    {%- assign project_type  = "local" -%}
+    {%- assign project_id    = project.name | slugify -%}
+    {%- assign project_img   = project.image -%}
+    {%- assign project_name  = project.name -%}
+    {%- assign project_desc  = project.description -%}
+    {%- assign project_tools = project.tools -%}
+
+    {%- assign project_pi    = project.pi -%}
+    {%- assign project_role  = project.role -%}
+    {%- assign project_year  = project.year -%}
+    {%- assign project_research_skills  = project.research_skills -%}
+    {%- assign project_technical_skills = project.technical_skills -%}
+
+    {%- if project.external_url -%}
+      {%- assign project_url = project.external_url -%}
+      {%- assign external    = true -%}
+    {%- else -%}
+      {%- assign project_url = project.url | relative_url -%}
+      {%- assign external    = false -%}
+    {%- endif -%}
+
+    {% include projects/project-card.html %}
+  {% endfor %}
+
 </div>
