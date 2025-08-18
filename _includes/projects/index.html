@@ -1,58 +1,46 @@
-<div class="card-columns m-3 mt-5">
+<div class="row">
+  {% for project in site.data.projects %}
+  <div class="col-md-6 col-lg-4 mb-4">
+    <div class="card h-100">
+      {% if project.image %}
+      <img class="card-img-top" src="{{ project.image | relative_url }}" alt="{{ project.name }}">
+      {% endif %}
 
-  <!-- Remote Projects -->
-  {% for remote_project in page.remote_projects %}
+      <div class="card-body d-flex flex-column">
+        <h5 class="card-title">{{ project.name }}</h5>
+        <p class="card-text">{{ project.description }}</p>
 
-    {%- for repo in site.github.public_repositories -%}
+        {% if project.pi %}
+        <p><strong>PI:</strong> {{ project.pi }}</p>
+        {% endif %}
 
-      {%- if remote_project == repo.name -%}
+        {% if project.role %}
+        <p><strong>Role:</strong> {{ project.role }}</p>
+        {% endif %}
 
-        {%- assign project = repo -%}
-        {%- assign words = project.name | split: '-' -%}
-        
-        {%- capture titlecase -%}
-          {%- for word in words -%}
-            {{ word | capitalize | append: ' ' }}
-          {%- endfor -%}
-        {%- endcapture -%}
+        {% if project.year %}
+        <p><strong>Year:</strong> {{ project.year }}</p>
+        {% endif %}
 
-        {%- assign project_type  = "remote" -%}
-        {%- assign project_id    = project.name -%}
-        {%- assign project_img   = false -%}
-        {%- assign project_name  = titlecase | strip -%}
-        {%- assign project_desc  = project.description -%}
-        {%- assign project_url   = project.html_url -%}
-        {%- assign project_tools = project.topics -%}
-        {%- assign external      = true -%}
+        {% if project.technical_skills %}
+        <p><strong>Technical Skills:</strong> {{ project.technical_skills | join: ", " }}</p>
+        {% endif %}
 
-        {% include projects/project-card.html %}
+        {% if project.research_skills %}
+        <p><strong>Research Skills:</strong> {{ project.research_skills | join: ", " }}</p>
+        {% endif %}
 
-      {%- endif -%}
+        {% if project.tools and project.tools.size > 0 %}
+        <p><strong>Tools:</strong> {{ project.tools | join: ", " }}</p>
+        {% endif %}
+      </div>
 
-    {%- endfor -%}
-
+      {% if project.external_url %}
+      <div class="card-footer text-center">
+        <a href="{{ project.external_url }}" class="btn btn-primary" target="_blank">View Project</a>
+      </div>
+      {% endif %}
+    </div>
+  </div>
   {% endfor %}
-
-  <!-- Local Projects -->
-  {% for project in site.projects %}
-
-    {%- assign project_type  = "local" -%}
-    {%- assign project_id    = project.name | slugify -%}
-    {%- assign project_img   = project.image -%}
-    {%- assign project_name  = project.name -%}
-    {%- assign project_desc  = project.description -%}
-    {%- assign project_tools = project.tools -%}
-
-    {%- if project.external_url -%}
-      {%- assign project_url = project.external_url -%}
-      {%- assign external    = true -%}
-    {%- else -%}
-      {%- assign project_url = project.url | relative_url -%}
-      {%- assign external    = false -%}
-    {%- endif -%}
-
-    {% include projects/project-card.html %}
-
-  {% endfor %}
-
 </div>
