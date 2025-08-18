@@ -1,0 +1,48 @@
+<div class="wow animated fadeIn" data-wow-delay=".15s">
+  <a href="{{ project_url }}" class="project card text-themed" {%- if external and site.open_new_tab -%} target="_blank" {%- endif -%}>
+    {%- if project_img -%}
+    <img id="{{ project_id }}-img" class="card-img-top" src="{{ project_img | relative_url }}" alt="{{ project_name }}" />
+    {%- endif -%}
+    <div class="card-body">
+      <h5 id="{{ project_id }}-name" class="card-title">
+        {%- if project_type == "remote" -%}
+        <i class="fab fa-github" data-toggle="tooltip" data-placement="bottom" data-delay="250" title="GitHub Repository"></i> |&nbsp;
+        {%- endif -%}
+        {{ project_name }}
+      </h5>
+
+      {%- if project_role or project_pi or project_year -%}
+      <p class="text-muted small mb-2">
+        {%- if project_role -%}{{ project_role }}{%- endif -%}
+        {%- if project_pi -%}{% if project_role %} · {% endif %}{{ project_pi }}{%- endif -%}
+        {%- if project_year -%} · {{ project_year }}{%- endif -%}
+      </p>
+      {%- endif -%}
+
+      <p id="{{ project_id }}-desc" class="card-text">{{ project_desc }}</p>
+
+      {%- if project_tools and project_tools.size > 0 -%}
+      <p id="{{ project_id }}-tools" class="card-text">
+        {%- for tool in project_tools -%}
+        <span class="badge badge-pill text-primary border border-primary ml-1">{{ tool }}</span>
+        {%- endfor -%}
+      </p>
+      {%- endif -%}
+
+      {%- if project_research_skills or project_technical_skills -%}
+        <div class="mt-1">
+          {%- if project_research_skills -%}
+            {%- for s in project_research_skills limit:2 -%}
+              <span class="badge badge-pill border ml-1">{{ s }}</span>
+            {%- endfor -%}
+          {%- endif -%}
+          {%- if project_technical_skills -%}
+            {%- for s in project_technical_skills limit:2 -%}
+              <span class="badge badge-pill border ml-1">{{ s }}</span>
+            {%- endfor -%}
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </a>
+</div>
