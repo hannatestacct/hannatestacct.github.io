@@ -1,5 +1,11 @@
+{% comment %}
+Renders cards from the _projects/ collection (local projects).
+Sorts by "weight" if present; falls back to name.
+{% endcomment %}
+
+{% assign items = site.projects | sort: "weight" %}
 <div class="row">
-  {% for project in site.data.projects %}
+  {% for project in items %}
   <div class="col-md-6 col-lg-4 mb-4">
     <div class="card h-100">
       {% if project.image %}
@@ -8,36 +14,39 @@
 
       <div class="card-body d-flex flex-column">
         <h5 class="card-title">{{ project.name }}</h5>
+
+        {% if project.description %}
         <p class="card-text">{{ project.description }}</p>
-
-        {% if project.pi %}
-        <p><strong>PI:</strong> {{ project.pi }}</p>
         {% endif %}
 
-        {% if project.role %}
-        <p><strong>Role:</strong> {{ project.role }}</p>
-        {% endif %}
-
-        {% if project.year %}
-        <p><strong>Year:</strong> {{ project.year }}</p>
-        {% endif %}
-
-        {% if project.technical_skills %}
-        <p><strong>Technical Skills:</strong> {{ project.technical_skills | join: ", " }}</p>
+        {% if project.pi or project.role or project.year %}
+          <p class="proj-meta-inline">
+            {% if project.role %}{{ project.role }}{% endif %}
+            {% if project.pi %}{% if project.role %} · {% endif %}{{ project.pi }}{% endif %}
+            {% if project.year %} · {{ project.year }}{% endif %}
+          </p>
         {% endif %}
 
         {% if project.research_skills %}
-        <p><strong>Research Skills:</strong> {{ project.research_skills | join: ", " }}</p>
+        <div class="chip-row">
+          {% for s in project.research_skills limit:2 %}
+            <span class="chip chip-research">{{ s }}</span>
+          {% endfor %}
+        </div>
         {% endif %}
 
-        {% if project.tools and project.tools.size > 0 %}
-        <p><strong>Tools:</strong> {{ project.tools | join: ", " }}</p>
+        {% if project.technical_skills %}
+        <div class="chip-row">
+          {% for s in project.technical_skills limit:2 %}
+            <span class="chip chip-tech">{{ s }}</span>
+          {% endfor %}
+        </div>
         {% endif %}
       </div>
 
       {% if project.external_url %}
-      <div class="card-footer text-center">
-        <a href="{{ project.external_url }}" class="btn btn-primary" target="_blank">View Project</a>
+      <div class="card-footer text-center mt-auto">
+        <a href="{{ project.external_url }}" class="btn btn-primary" target="_blank" rel="noopener">View Project</a>
       </div>
       {% endif %}
     </div>
