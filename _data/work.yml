@@ -1,0 +1,27 @@
+research:
+  - org: "Precision Biosystems Laboratory"
+    institution: "Georgia Institute of Technology"
+    role: "Research Assistant"
+    pi: "Dr. Nael McCarty"
+    location: "Atlanta, GA"
+    dates: "2024–Present"
+    summary: "Developing a high-temporal resolution system for measurement of transcellular and paracellular transport using EIS."
+    research_skills:
+      - Device design & characterization
+      - Proposal writing
+      - Epithelial electrophysiology
+    technical_skills:
+      - Altium (PCB)
+      - MATLAB & Python (model fitting)
+      - SolidWorks (CAD)
+      - SEM Imaging
+
+industry:
+  - org: "example"
+    role: "example"
+    location: "example"
+    dates: "2022–2024"
+    bullets:
+      - example
+    technical_skills:
+      - example
