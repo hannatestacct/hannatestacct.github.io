@@ -1,0 +1,68 @@
+---
+layout: default
+title: Work
+permalink: /work/
+weight: 1
+---
+
+<div class="container my-5 work-page">
+  <h1 class="mb-4">Work</h1>
+
+  {% if site.data.work.research %}
+  <section class="mb-5">
+    <h2 class="mb-3">Research Experience</h2>
+    {% for item in site.data.work.research %}
+    <article class="work-item p-3 mb-3 border rounded">
+      <header class="d-flex justify-content-between flex-wrap">
+        <h3 class="h5 mb-2 mb-sm-0">{{ item.org }}</h3>
+        <div class="text-muted">
+          {% if item.institution %}{{ item.institution }} • {% endif %}
+          {{ item.dates }}{% if item.location %} • {{ item.location }}{% endif %}
+        </div>
+      </header>
+      <div class="text-muted mb-2">
+        {% if item.role %}<strong>Role:</strong> {{ item.role }}{% endif %}
+        {% if item.pi %} • <strong>PI:</strong> {{ item.pi }}{% endif %}
+      </div>
+      {% if item.summary %}<p class="mb-2">{{ item.summary }}</p>{% endif %}
+      <div class="small">
+        {% if item.research_skills %}
+          <strong>Research skills:</strong> {{ item.research_skills | join: ", " }}<br>
+        {% endif %}
+        {% if item.technical_skills %}
+          <strong>Technical skills:</strong> {{ item.technical_skills | join: ", " }}
+        {% endif %}
+      </div>
+    </article>
+    {% endfor %}
+  </section>
+  {% endif %}
+
+  {% if site.data.work.industry %}
+  <section class="mb-5">
+    <h2 class="mb-3">Industry Experience</h2>
+    {% for item in site.data.work.industry %}
+    <article class="work-item p-3 mb-3 border rounded">
+      <header class="d-flex justify-content-between flex-wrap">
+        <h3 class="h5 mb-2 mb-sm-0">{{ item.org }}</h3>
+        <div class="text-muted">
+          {{ item.role }}{% if item.dates %} • {{ item.dates }}{% endif %}{% if item.location %} • {{ item.location }}{% endif %}
+        </div>
+      </header>
+
+      {% if item.bullets %}
+      <ul class="mb-2">
+        {% for b in item.bullets %}
+        <li>{{ b }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+      {% if item.technical_skills %}
+      <div class="small"><strong>Tech:</strong> {{ item.technical_skills | join: ", " }}</div>
+      {% endif %}
+    </article>
+    {% endfor %}
+  </section>
+  {% endif %}
+</div>
