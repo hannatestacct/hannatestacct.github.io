@@ -3,7 +3,7 @@ title               : Athena Chien
 description         : >-
                       Ph.D. Candidate at the Walter H. Coulter Department of Biomedical Engineering, Georgia Institute of Technology & Emory University
 baseurl             : ""            # Change to empty quotes if you are hosting your site at <your-username>.github.io directly
-repository          : hannatestacct.github.io      # Change to <your-username>/<your-username>.github.io (or remove it if you don't need remote projects)
+repository          : hannatestacct/hannatestacct.github.io      # Change to <your-username>/<your-username>.github.io (or remove it if you don't need remote projects)
 remote_theme        : yousinix/portfolYOU
 open_new_tab        : false                    # Opens external URLs in new tab (works for posts, projects and navbar only)
 
@@ -23,23 +23,23 @@ nav_exclude:                                            # The following paths ar
 ### Author Info ###
 author:
   name              : Athena Chien
-  image             : https://i.imgur.com/uyDNQnn.jpg
-  behance           : your_username
+  image             : /assets/img/main-headshot.png
+# behance           : your_username
 # dribbble          : your_username
-  email             : username@domain.com
-  facebook          : your_username
-  github            : your_username
+# email             : username@domain.com
+# facebook          : your_username
+# github            : your_username
 # gitlab            : your_username
 # instagram         : your_username
 # kaggle            : your_username
-  linkedin          : your_username
-  medium            : your_username
+# linkedin          : your_username
+# medium            : your_username
 # soundcloud        : your_username
 # spotify           : your_username
 # stackoverflow     : your_user_id
 # tumblr            : your_username.tumblr.com
 # twitch            : your_username
-  twitter           : your_username
+# twitter           : your_username
 # vimeo             : your_username
 # youtube           : your_channel_name
 # keybase           : your_username
