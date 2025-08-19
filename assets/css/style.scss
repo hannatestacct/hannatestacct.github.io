@@ -4,7 +4,15 @@
 
 /* ---------- Work page layout ---------- */
 .work-page h2 { border-bottom: 1px solid #eee; padding-bottom: .25rem; }
-.work-item { background: var(--card-bg, #fff); }
+.work-item {
+  background-color: #fff;
+  color: #212529;
+}
+[data-theme="dark"] .work-item {
+  background-color: #1c1c1c; /* dark gray */
+  color: #f8f9fa;            /* light text */
+  border-color: #333;        /* optional, soft border */
+}
 
 /* Image frame for consistent aspect ratio */
 .work-thumb {
@@ -47,7 +55,7 @@
 /* Dark mode overrides (portfolYOU sets [data-theme="dark"]) */
 [data-theme="dark"] .badge-skill {
   background-color: #2a2a2a;
- /* color: #f8f9fa;*/
+  color: #f8f9fa;
   border-color: #444;
 }
 [data-theme="dark"] .badge-skill--research { background-color: #1f2a38; border-color: #304357; }
