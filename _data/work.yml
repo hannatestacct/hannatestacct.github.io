@@ -5,6 +5,7 @@ research:
     pi: "Dr. Craig Forest"
     location: "Atlanta, GA"
     dates: "2021–Present"
+    image: "/assets/img/EIS.png"
     summary: "Developing a high-temporal resolution system for measurement of transcellular and paracellular transport using electrochemical impedance spectroscopy (EIS) to study cellular models of epithelial disease. Working in collaboration with Dr. Nael McCarty (Emory University)."
     research_skills:
       - Device design & characterization
@@ -22,6 +23,7 @@ industry:
     role: "example"
     location: "example"
     dates: "2022–2024"
+    image: "/assets/img/EIS.png"
     bullets:
       - example
     technical_skills:
