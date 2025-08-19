@@ -18,7 +18,9 @@ weight: 2
         <!-- Image (left) -->
         <div class="col-12 col-md-3">
           {% if item.image %}
-          <img class="work-thumb" src="{{ item.image | relative_url }}" alt="{{ item.org }}">
+          <div class="work-thumb is-43"> <!-- change to is-square if you prefer -->
+            <img src="{{ item.image | relative_url }}" alt="{{ item.org }}">
+          </div>
           {% endif %}
         </div>
 
@@ -41,27 +43,27 @@ weight: 2
           <p class="mb-3">{{ item.summary }}</p>
           {% endif %}
 
-          <!-- Skills: two side-by-side columns (stack on mobile) -->
+          <!-- Skills: two columns on md+, stack on mobile -->
           <div class="skills-grid">
             {% if item.research_skills %}
             <div>
               <h4 class="h6 mb-2">Research Skills</h4>
-              <ul class="list-unstyled skills-list">
+              <p class="skills">
                 {% for s in item.research_skills %}
-                <li class="chip chip-research">{{ s }}</li>
+                  <span class="badge-skill badge-skill--research">{{ s }}</span>
                 {% endfor %}
-              </ul>
+              </p>
             </div>
             {% endif %}
 
             {% if item.technical_skills %}
             <div>
               <h4 class="h6 mb-2">Technical Skills</h4>
-              <ul class="list-unstyled skills-list">
+              <p class="skills">
                 {% for s in item.technical_skills %}
-                <li class="chip chip-tech">{{ s }}</li>
+                  <span class="badge-skill badge-skill--tech">{{ s }}</span>
                 {% endfor %}
-              </ul>
+              </p>
             </div>
             {% endif %}
           </div>
@@ -82,7 +84,9 @@ weight: 2
         <!-- Image (left) -->
         <div class="col-12 col-md-3">
           {% if item.image %}
-          <img class="work-thumb" src="{{ item.image | relative_url }}" alt="{{ item.org }}">
+          <div class="work-thumb is-43">
+            <img src="{{ item.image | relative_url }}" alt="{{ item.org }}">
+          </div>
           {% endif %}
         </div>
 
@@ -107,11 +111,11 @@ weight: 2
           <div class="skills-grid">
             <div>
               <h4 class="h6 mb-2">Technical Skills</h4>
-              <ul class="list-unstyled skills-list">
+              <p class="skills">
                 {% for s in item.technical_skills %}
-                <li class="chip chip-tech">{{ s }}</li>
+                  <span class="badge-skill badge-skill--tech">{{ s }}</span>
                 {% endfor %}
-              </ul>
+              </p>
             </div>
           </div>
           {% endif %}
